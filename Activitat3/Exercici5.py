@@ -7,7 +7,7 @@ resultado = ""
 print("frase sin elimnar caracteres = "+frase)
 
 for x in frase:
-    if x in resultado:
+    if x not in resultado: ## verifica si sale por primera vez el caracter, por lo que es un caracter unico
         resultado += x
         
 print(resultado)
