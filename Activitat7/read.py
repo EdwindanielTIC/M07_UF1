@@ -1,17 +1,11 @@
 import psycopg2
 
+from connection import read_db
+
 def read_alumno():
     try:
-        # Establecer la conexión
-        conn = psycopg2.connect(
-        database = "UF2",  
-        user = 'postgres',
-        password= 'DAWM7',
-        host = 'localhost',
-        port = '5432'     
-        )
-        
-        cursor= conn.cursor()
+        conn = read_db()
+        cursor = conn.cursor()
         
         mostrar_registros = """
         SELECT * FROM estudiantestic
@@ -37,5 +31,6 @@ def read_alumno():
         if conn:
             conn.close()
         print("conexion cerrada con exito ")
+    
+  
 
-read_alumno()

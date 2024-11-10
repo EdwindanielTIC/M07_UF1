@@ -1,29 +1,19 @@
 import psycopg2
-
-def insertar_estudiante():
+from connection import read_db
+def insertar_estudiante(id=None, nombre=None, apellido=None, edad=None, direccion=None, telefono=None):
     try:
-        # Esto tengo que ponerlo siempre que quiera crear algo en pgadmi, ya que es lo que se encarga de conectar la base de datos
-        conn = psycopg2.connect(
-            database="UF2",
-            user="postgres",
-            password="DAWM7",
-            host="localhost",
-            port="5432"
-        )
-        
-    
+        conn = read_db()
         cursor = conn.cursor()
         
         insert_query = """
-        INSERT INTO estudiantestic (id, nombre, apellido, edad, direccion, telefono)
+        INSERT INTO EstudiantesTIC (id, nombre, apellido, edad, direccion, telefono)
         VALUES (%s, %s, %s, %s, %s, %s)
         """    
-        
-        nuevo_estudiante = ("04332170", "Edwin Daniel", "Ramirez Cubias", 25, "Calle Encarnacion", "634763265")
- 
-        cursor.execute(insert_query, nuevo_estudiante)
-        
-  
+
+        cursor.execute(insert_query, (id, nombre, apellido, edad, direccion, telefono))
+        # en este caso, el cursor lo que hace es que me actualiza la bbdd, hace un INSERT en alumnostic
+        # luego, coge los parametros que he dado y los actualizara
+        # En resumen , lo que me hara el cursor.execute es actulizar la base de datos.
         conn.commit()
         print("Registro insertado con éxito.")
         
@@ -31,9 +21,10 @@ def insertar_estudiante():
         print("Ocurrió un error:", e)
     
     finally:
-     
         if cursor:
             cursor.close()
         if conn:
             conn.close()
 
+
+## borrar volumenes.
