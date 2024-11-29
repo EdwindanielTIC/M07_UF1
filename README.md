@@ -10,14 +10,17 @@ Luego he ejecutado : uvicorn Main:app --reload    y me aparece lo siguiente :
 
 Capturas de cada metodo : 
 
-![Metodos ](https://github.com/user-attachments/assets/04fb0f59-002a-4216-b7ce-7af583bbe5e4)
+![image](https://github.com/user-attachments/assets/d879d23e-2bcf-4292-931c-dd380ccfb8a8)
+![image](https://github.com/user-attachments/assets/25ed9ae1-1288-43f3-a301-facff0a267bb)
 
 Haciendo pruebas con SWAGGWER:
 
 METODO GET : 
+
 ![image](https://github.com/user-attachments/assets/70e6c3a5-0a13-47cf-bd90-2eddd8458883)
 
 Metodo get/items :
+
 Como podemos observar, el codigo funciona , al introducir un numero, me devuelve el valor 
 
 ![image](https://github.com/user-attachments/assets/410838ce-9d7d-48d5-8d7b-226c88791666)
