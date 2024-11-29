@@ -7,3 +7,8 @@ Luego he ejecutado : uvicorn Main:app --reload    y me aparece lo siguiente :
 
 ![SWAGGWER](https://github.com/user-attachments/assets/0f73e0b0-6629-4906-9f5c-582c320cc452)
 
+
+Capturas de cada metodo : 
+
+![Metodos ](https://github.com/user-attachments/assets/04fb0f59-002a-4216-b7ce-7af583bbe5e4)
+
