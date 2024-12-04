@@ -22,3 +22,8 @@ Class Item(BaseModel):
 En este caso estoy controlando aspectos como valores por defecto, restricciones y metadatos.
 
 Body-Nested Models 
+
+
+diferencia entre usar el set y list 
+
+![diferencia](image.png)
