@@ -1,13 +1,15 @@
 import psycopg2
 
-conn = psycopg2.connect(
-    database="databaseAct9",
-    user="postgres",
-    password="EdwinDaniel",
-    host = "localhost",
-    port="5432"
-)
+def connection_db():
 
-connection = conn.cursor()
+    conn = psycopg2.connect(
+        database="DbJSON",
+        user="postgres",
+        password="EdwinDaniel",
+        host = "localhost",
+        port="5432"
+    )
 
-print(connection)
+
+    print("Coneccion establecida correctamente ")
+    return conn
