@@ -3,11 +3,11 @@ import psycopg2
 def connection_db():
     
     conn = psycopg2.connect(
-        database = "penjat",
-        user= "postgres",
-        password = "1234",
+        database = "postgres_24255",
+        user= "user_postgres1",
+        password = "pass_postgres1",
         host = "localhost",
-        port = "5432"
+        port = "5433"
         
     )
 

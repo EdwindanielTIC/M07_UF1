@@ -5,19 +5,19 @@ def create_table(conn):
     
 
     usuarios = ''' CREATE TABLE jugador (
-         id SERIAL PRIMARY KEY,
+         id_jugador SERIAL PRIMARY KEY,
          nombre VARCHAR(100) NOT NULL,
          apellido VARCHAR(100) NOT NULL
     )
     '''
     
     categorias = '''CREATE TABLE categorias(
-        id SERIAL PRIMARY KEY,
+        id_categorias SERIAL PRIMARY KEY,
         nombre VARCHAR(50) UNIQUE NOT NULL
         )'''
     
     palabra = '''CREATE TABLE palabras (
-        id SERIAL PRIMARY KEY,
+        id_palabras SERIAL PRIMARY KEY,
         palabra VARCHAR(100) NOT NULL,
         categoria VARCHAR(50),
         fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -28,7 +28,7 @@ def create_table(conn):
     '''
     
     registro = ''' CREATE TABLE registro_juego(
-        id SERIAL PRIMARY KEY,
+        id_registro SERIAL PRIMARY KEY,
         id_jugador INT NOT NULL,
         id_palabra INT NOT NULL,
         puntuacio INT NOT NULL,
