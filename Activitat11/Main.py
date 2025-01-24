@@ -2,8 +2,9 @@ import psycopg2
 from psycopg2 import sql
 import conn as cn
 import create as cr
-from db_juego import leer_jugador, categorias, palabras
+import db_juego
 from pydantic import BaseModel
+from datetime import datetime
 
 from fastapi import FastAPI, HTTPException
 
@@ -19,15 +20,15 @@ class usuarios_BM(BaseModel):
     nombre: str
     apellido: str
 
-class categorias_BM(BaseModel):
-    id_categoria: int
+class categoriasBM(BaseModel):
+    id_categorias: int = None
     nombre: str
 
-class palabras_BM(BaseModel):
-    id: int
+class palabrasBM(BaseModel):
+    id_palabras: int = None  # Opcional porque se genera automáticamente
     palabra: str
     categoria: str
-    fecha_creacion: str
+    fecha_creacion: datetime  # Opcional, manejado por la base de datos
     idioma: str
     categoria_id: int
     
@@ -46,7 +47,7 @@ class registro_juego_BM(BaseModel):
 def get_jugadores(id_jugador: int):
     try:
         
-        jugador = leer_jugador(id_jugador)
+        jugador = db_juego.leer_jugador(id_jugador)
         if not jugador:
                 raise HTTPException(status_code=404, detail="No se ha encontrado el jugador")
         return usuarios_BM(**jugador)  
@@ -55,20 +56,32 @@ def get_jugadores(id_jugador: int):
         raise HTTPException(status_code=500, detail=str(e))
     
     
+    
 
-@app.post("/categorias", response_model=categorias_BM, tags=["categorias"])
-def create_categorias(nombre: str):
-    try: 
-        categoria_Juego = categorias(nombre)
-        return categorias_BM(nombre=categoria_Juego)
+@app.post("/categorias", response_model=categoriasBM, tags=["categorias"])
+def create_categorias(categoria: categoriasBM):
+    try:
+        nueva_categoria = db_juego.categorias(categoria.nombre)
+        print("Se ha insertado correctamente ")
+        return nueva_categoria
+       
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+        
   
   
-@app.post("/palabras", response_model=palabras_BM, tags=["palabras"])
-def create_palabras(palabra: str, categoria: str, idioma: str):
-    try: 
-        palabra_Juego = palabras(palabra, categoria, idioma)
-        return palabras_BM(palabra=palabra_Juego)
+@app.post("/palabras", response_model=palabrasBM)
+def create_palabras(palabrasDelJuego: palabrasBM):
+    try:
+        print(f"Datos recibidos: {palabrasDelJuego}")
+        nueva_palabra = db_juego.palabras(
+            palabra=palabrasDelJuego.palabra,
+            categoria=palabrasDelJuego.categoria,
+            idioma=palabrasDelJuego.idioma,
+            categoria_id=palabrasDelJuego.categoria_id
+        )
+        return nueva_palabra
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))    
+        print(f"Error interno: {e}")  # Debug: Imprimir error en la consola
+        raise HTTPException(status_code=500, detail=str(e))
+

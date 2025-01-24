@@ -1,10 +1,3 @@
-def jugador_schema(jugador):
-    return {
-        "id_jugador": jugador[0],
-        "nombre": jugador[1],
-        "apellido": jugador[2]
-    }
-
 
 def categorias_schema(categorias):
     return{
