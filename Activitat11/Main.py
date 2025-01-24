@@ -16,13 +16,14 @@ if __name__ == "__main__":
     cr.create_table(conn)
 
 class usuarios_BM(BaseModel):
-    id_jugador: int
+    id_jugador: int = None
     nombre: str
     apellido: str
 
 class categoriasBM(BaseModel):
-    id_categorias: int = None
-    nombre: str
+    id_categorias: int = None 
+    nombre: str 
+    
 
 class palabrasBM(BaseModel):
     id_palabras: int = None  # Opcional porque se genera automáticamente
@@ -30,7 +31,7 @@ class palabrasBM(BaseModel):
     categoria: str
     fecha_creacion: datetime  # Opcional, manejado por la base de datos
     idioma: str
-    categoria_id: int
+    categoria_id: int 
     
 class registro_juego_BM(BaseModel):
     id: int
@@ -43,7 +44,7 @@ class registro_juego_BM(BaseModel):
 
     
 
-@app.get("/jugadores/{id_jugador}", response_model=usuarios_BM, tags=["jugadores"])
+@app.get("/jugadores/{id_jugador}", response_model=usuarios_BM, tags=["GETS"])
 def get_jugadores(id_jugador: int):
     try:
         
@@ -55,10 +56,20 @@ def get_jugadores(id_jugador: int):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
     
-    
+
+@app.post("/insertar_jugaro", response_model=usuarios_BM, tags=["POST"])
+def creando_jugador(jugador : usuarios_BM):
+ try:
+     nuevo_jugador = db_juego.insertarJugador(
+         nombre=jugador.nombre,
+         apellido=jugador.apellido)
+     print("El jugador se ha insertado correctamente")
+     return nuevo_jugador
+ except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     
 
-@app.post("/categorias", response_model=categoriasBM, tags=["categorias"])
+@app.post("/categorias", response_model=categoriasBM, tags=["POST"])
 def create_categorias(categoria: categoriasBM):
     try:
         nueva_categoria = db_juego.categorias(categoria.nombre)
@@ -70,7 +81,7 @@ def create_categorias(categoria: categoriasBM):
         
   
   
-@app.post("/palabras", response_model=palabrasBM)
+@app.post("/palabras", response_model=palabrasBM , tags=["POST"])
 def create_palabras(palabrasDelJuego: palabrasBM):
     try:
         print(f"Datos recibidos: {palabrasDelJuego}")
@@ -82,6 +93,29 @@ def create_palabras(palabrasDelJuego: palabrasBM):
         )
         return nueva_palabra
     except Exception as e:
-        print(f"Error interno: {e}")  # Debug: Imprimir error en la consola
+        if "duplicate" in str(e).lower():
+            raise HTTPException(
+                status_code=400, detail="Esa palabra ya existe en la base de datos"
+            )
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/Registro_juego", response_model=registro_juego_BM, tags=["POST"])
+def create_registro(registroNuevo : registro_juego_BM):
+    try:
+        print(f"Registro recibidos: {registroNuevo}")
+        nuevoRegistro = db_juego.insertar_registro(
+            id_jugador=registroNuevo.id_jugador,
+            id_palabra=registroNuevo.id_palabra,
+            puntuacio=registroNuevo.puntuacio,
+            estat_partida=registroNuevo.estat_partida
+        )
+        return nuevoRegistro
+    except Exception as e:
+        if "duplicate" in str(e).lower():
+            raise HTTPException(
+                status_code=400, detail="Este registro ya existe"
+            )
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 
