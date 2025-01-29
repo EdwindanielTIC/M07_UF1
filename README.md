@@ -28,6 +28,14 @@ Como podemos observar en la siguiente imagen, el  parte del set, al introducir d
 
 ![SET](https://github.com/user-attachments/assets/bc56f33c-46ad-4fe8-b9af-6d9dc3aca5e0)
 
+A continuacion procederemos a realizar la coneccion con la base de datos: 
+captura de que se conecto a la base de datos : 
+![image](https://github.com/user-attachments/assets/c3259cb3-135c-411c-9235-0d3b366eb109)
+
+foto de la creacion de la base de datos en pgAdmi: 
+![image](https://github.com/user-attachments/assets/d7f156c8-f884-4a00-a179-a833629b14f0)
+
+
 
 
 
