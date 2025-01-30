@@ -45,7 +45,7 @@ Me devuelve la lista Json conforme se ma ha insertado correctamente el usuario :
 
 ![image](https://github.com/user-attachments/assets/3404bccf-7673-4d36-a152-90463c06f3ce)
 
-Procedemos a la verifica en pgAdmi que se haya insertado correctamente : podemos ver que se ha insertado correctamente el jugador 
+Procedemos a la verifica en pgAdmi que se haya insertado correctamente :
 
 ![image](https://github.com/user-attachments/assets/c210ec1f-ecae-454c-ba22-8dc693660ad4)
 
