@@ -49,6 +49,9 @@ Procedemos a la verifica en pgAdmi que se haya insertado correctamente :
 
 ![image](https://github.com/user-attachments/assets/c210ec1f-ecae-454c-ba22-8dc693660ad4)
 
+A continuacion lo que hago es el read. esto signfica que voy a buscar al usuario mediante su id, si este id existe me lo devolvera: 
+
+![image](https://github.com/user-attachments/assets/d572e61f-75e0-43f3-8f19-0dbbd4aace60)
 
 
 
