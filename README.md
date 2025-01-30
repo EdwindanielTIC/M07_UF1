@@ -36,6 +36,15 @@ foto de la creacion de la base de datos en pgAdmi:
 ![image](https://github.com/user-attachments/assets/d7f156c8-f884-4a00-a179-a833629b14f0)
 
 
+**INSERTANDO USUARIO**
+
+A continuacion introduzco la siguinete infomracion : 
+![image](https://github.com/user-attachments/assets/04d3755a-beb0-4d68-97df-cd1c8e599c9b)
+
+Me devuelve la lista Json conforme se ma ha insertado correctamente el usuario : 
+
+
+Procedemos a la verificac
 
 
 
