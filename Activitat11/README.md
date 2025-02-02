@@ -1,1 +1,0 @@
-![Creación tablas](image.png)
