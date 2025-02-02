@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from typing import List
-from opciones import options_schema
+from opciones_sc import options_schema
 import read 
 
 app = FastAPI()
@@ -14,3 +14,12 @@ async def obtener_opciones():
     return options_schema(read.read_db())
 
 
+@app.get("/penjat/tematica/{option}", response_model = List[dict])
+async def get_word(option: str):
+   word = options_schema(read.read_word_db(option))
+   print("")
+   print("IMPRESSIÓ WORD del mètode GET_WORD")
+   print(type(word))
+   print(word)
+  
+   return word
