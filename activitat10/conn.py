@@ -11,5 +11,5 @@ def connection_db():
    )
 
 
-   print("Connexió establerta correctament")
+   print("Conexion establecida correctamente")
    return conn
