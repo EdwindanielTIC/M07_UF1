@@ -17,8 +17,7 @@ def create_table():
         
         print("La tabla 'paraules' ha sido creada exitosamente.")
         
-        cursor.close()
-        conn.close()
+ 
         
     except Exception as e:
         print(f"Error en la función de crear la tabla: {e}")
